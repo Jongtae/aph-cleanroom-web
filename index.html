@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meeting Cost Calculator</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="calculator-panel" aria-labelledby="page-title">
+        <div class="intro">
+          <p class="eyebrow">Meeting Cost Calculator</p>
+          <h1 id="page-title">Price the room before the meeting starts.</h1>
+          <p class="lede">
+            Enter the people, average hourly cost, and duration to see the direct labor cost of a meeting.
+          </p>
+        </div>
+
+        <form id="meeting-cost-form" class="calculator-form" novalidate>
+          <div id="form-error" class="form-error" role="alert" hidden></div>
+
+          <label class="field">
+            <span>Participants</span>
+            <input
+              id="participants"
+              name="participants"
+              type="number"
+              min="1"
+              step="1"
+              inputmode="numeric"
+              autocomplete="off"
+              placeholder="8"
+              required
+            />
+          </label>
+
+          <label class="field">
+            <span>Average hourly cost</span>
+            <div class="money-input">
+              <span aria-hidden="true">$</span>
+              <input
+                id="hourly-cost"
+                name="hourlyCost"
+                type="number"
+                min="0"
+                step="0.01"
+                inputmode="decimal"
+                autocomplete="off"
+                placeholder="75"
+                required
+              />
+            </div>
+          </label>
+
+          <label class="field">
+            <span>Duration in minutes</span>
+            <input
+              id="duration"
+              name="duration"
+              type="number"
+              min="1"
+              step="1"
+              inputmode="numeric"
+              autocomplete="off"
+              placeholder="45"
+              required
+            />
+          </label>
+
+          <button type="submit" class="calculate-button">Calculate</button>
+        </form>
+
+        <section class="results" aria-labelledby="results-title" aria-live="polite">
+          <div>
+            <p class="section-label" id="results-title">Result</p>
+            <p class="result-summary" id="result-summary">Enter values to calculate the direct labor cost.</p>
+          </div>
+          <dl class="result-grid">
+            <div>
+              <dt>Total meeting cost</dt>
+              <dd id="total-cost">$0.00</dd>
+            </div>
+            <div>
+              <dt>Cost per minute</dt>
+              <dd id="cost-per-minute">$0.00</dd>
+            </div>
+            <div>
+              <dt>Cost per participant</dt>
+              <dd id="cost-per-participant">$0.00</dd>
+            </div>
+          </dl>
+        </section>
+      </section>
+    </main>
+
+    <script type="module" src="/src/app.js"></script>
+  </body>
+</html>
