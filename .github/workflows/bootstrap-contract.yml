@@ -1,0 +1,29 @@
+name: Bootstrap Contract
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify clean-room contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f AGENTS.md
+          test -f PRODUCT_GOAL.md
+          test -f PRODUCT_ACCEPTANCE.md
+          test -f APH_PRODUCT_WEB.md
+          test -f STACK.md
+          grep -Fq "Issue #1" AGENTS.md
+          grep -Fq "Vertical Slice First" APH_PRODUCT_WEB.md
+          grep -Fq '$450.00' PRODUCT_ACCEPTANCE.md
+          grep -Fq "Do not ask the owner" AGENTS.md
+          echo "Clean-room bootstrap contract verified."
